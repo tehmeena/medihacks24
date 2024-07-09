@@ -1,4 +1,4 @@
--Allow user to enter current info about resources around them so they can keep track of their resources 
+-Allow client (expecting or pregnant person) to enter current info about resources around them so they can keep track of their resources 
 -Language selection 
 -Accessibility in the app 
 -team members that may support maternal and infant care: doulas, midwives, nurses, doctors, physical therapists, Labor and Delivery team members, dietitians, perinatal social workers, 
@@ -6,6 +6,7 @@
 -can the app also provide baseline information and resources (laws/regulations regarding maternal care/maternal leave/etc in your country/state of residence, what health insurance covers in your area of residence) 
 -SOS feature? 
 -can the app designate roles? 
+-add a feature in the app that allows the client to regularly update and track how they are doing 
 
 research links: 
 https://www.healthfulchat.org/
