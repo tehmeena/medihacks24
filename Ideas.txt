@@ -7,6 +7,7 @@
 -SOS feature? 
 -can the app designate roles? 
 -add a feature in the app that allows the client to regularly update and track how they are doing 
+-add feature to schedule event 
 
 research links: 
 https://www.healthfulchat.org/
