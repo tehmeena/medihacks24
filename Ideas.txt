@@ -5,4 +5,11 @@
 -can the app be used to connect expecting mothers with other expecting mothers 
 -can the app also provide baseline information and resources (laws/regulations regarding maternal care/maternal leave/etc in your country/state of residence, what health insurance covers in your area of residence) 
 -SOS feature? 
--(adding this line to make sure changes are updating when I upload to GitHub)
+-can the app designate roles? 
+
+research links: 
+https://www.healthfulchat.org/
+https://tigerconnect.com/products/clinical-collaboration/
+https://www.klara.com/
+https://www.lumahealth.io/what-it-does/
+https://www.joghr.org/article/88917-closing-the-gap-in-maternal-health-access-and-quality-through-targeted-investments-in-low-resource-settings
