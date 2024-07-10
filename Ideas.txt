@@ -8,6 +8,12 @@
 -can the app designate roles? 
 -add a feature in the app that allows the client to regularly update and track how they are doing 
 -add feature to schedule event 
+-resources training for providers 
+-something that allows providers to document trends/patterns in their area 
+-something that allows providers nearby or around the world to share resources with each other and communicate and share how they're managing or providing care, tips and tricks 
+-resources and info for ensuring quality production and distrubution of medicine and medication? 
+-transportation routes for getting to care for expecting parent 
+-resources for fathers or partners 
 
 research links: 
 https://www.healthfulchat.org/
