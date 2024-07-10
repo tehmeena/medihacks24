@@ -14,6 +14,7 @@
 -resources and info for ensuring quality production and distrubution of medicine and medication? 
 -transportation routes for getting to care for expecting parent 
 -resources for fathers or partners 
+-providers can join multiple circles or cases, whereas pregnant people using the app stay within their circle 
 
 research links: 
 https://www.healthfulchat.org/
