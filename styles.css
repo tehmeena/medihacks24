@@ -22,13 +22,14 @@ section {
     background-color: #f0f0f0;
 }
 
+/* Header */
 header {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px; 
 }
 
-/* Login Sign-Up Section */ 
+/* ### Begin Login Sign-Up Section ###  */ 
 .login-sign-up {
     display: flex;
     justify-content: center;
@@ -93,3 +94,26 @@ button {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+/* Role Selection Button Styling */
+.role-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #689C52;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.role-button:hover {
+    background-color: #283C20;
+}
+
+/* ### End Login Sign-Up Section ### */ 
+
