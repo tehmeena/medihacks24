@@ -15,10 +15,6 @@
         <header>
             Welcome to MamaCircle 
         </header>
-    </section>
-
-    <!--This section has some basic info about the purpose of MamaCircle-->
-    <section id="sectionwelcome">
         <p>hello world for now!</p>
     </section>
 
@@ -81,6 +77,21 @@
             <button id="login-button" class="login-button">Login</button>
             <button id="signup-button" class="signup-button">Sign Up</button>
         </div>
+
+        <!-- Role Selection Form -->
+        <div id="role-selection" class="form-container" style="display: none;">
+            <h2>Are you...</h2>
+            <p>If more than one role is applicable to you, select the most pertinent one and you'll be able to update your profile later with more roles!</p>
+            <form id="role-form">
+                <button type="button" class="role-button" data-role="pregnant">Pregnant</button>
+                <button type="button" class="role-button" data-role="professional">A Healthcare Professional or Provider</button>
+                <button type="button" class="role-button" data-role="friendfamily">A friend or family member</button>
+                <button type="button" class="role-button" data-role="member">A member of an organization, non-profit, or company</button>
+                <button type="button" class="role-button" data-role="learner">Someone who wants to learn more</button>
+                <button type="submit">Next</button>
+            </form>
+        </div>
+
 
     </section>
     <!-- End Login or SignUp Section -->
