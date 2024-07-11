@@ -18,6 +18,7 @@
 -providers can join multiple circles or cases, whereas pregnant people using the app stay within their circle 
 -Opportunities to sign up for research in the app 
 -communicate recalls on medication and formula - alerts 
+-Alerts everyone when person is in labor or on the way to the hospital
 
 *Existing Resources for Pregnant People*
 -https://www.healthfulchat.org/
