@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MamaCircle</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
+
 <body>
+    <!--Just the home landing page-->
     <section id="section1">
         <header>
             Welcome to MamaCircle 
         </header>
     </section>
 
+    <!--This section has some basic info about the purpose of MamaCircle-->
     <section id="sectionwelcome">
-        <!-- need to add some info here about the goals and purpose -->
+        <p>hello world for now!</p>
     </section>
 
-
+    <!--Login or SignUp-->
     <section id="sectionloginsignup" class="login-sign-up">
-        <button class="login-button">Login</button>
+        <button id="login-button" class="login-button">Login</button>
         <button class="signup-button">Sign Up</button>
     </section>
 
+    <!-- Login Form -->
+    <div id="login-form" class="form-container" style="display: none;">
+        <h2>Login</h2>
+        <form>
+            <label for="login-username">Username:</label>
+            <input type="text" id="login-username" name="login-username">
+    
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="login-password">
+            
+            <button type="submit">Login</button>
+        </form>
+    </div>
+  
 
+
+    <script src="script.js"></script>
 </body>
 
 
