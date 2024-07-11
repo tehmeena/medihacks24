@@ -28,6 +28,7 @@ header {
     margin-bottom: 20px; 
 }
 
+/* Login Sign-Up Section */ 
 .login-sign-up {
     display: flex;
     justify-content: center;
@@ -36,7 +37,7 @@ header {
     gap: 20px;
 }
 
-/* Button styling */
+/* Button styling for Login/Sign-Up Buttons*/
 button {
     padding: 15px 30px;
     width: 200px;
@@ -66,4 +67,29 @@ button {
     background-color: #283C20
 }
 
+/* Sign-Up Login Form Styling */ 
 
+.form-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 400px;
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-container form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-container form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
