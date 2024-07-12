@@ -1,221 +1,163 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MamaCircle</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+// Show sign-up form when sign-up button is clicked
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.signup-button').addEventListener('click', function() {
+        document.getElementById('signup-form').style.display = 'block';
+        document.getElementById('login-form').style.display = 'none'; // Hide login form 
+        document.getElementById('login-signup-buttons').style.display = 'none';
+        document.getElementById('section1').style.display = 'none';
+
+    });
+
+    // Show login form when login button is clicked
+    document.querySelector('.login-button').addEventListener('click', function() {
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('signup-form').style.display = 'none'; // Hide sign-up form 
+        document.getElementById('login-signup-buttons').style.display = 'none';
+        document.getElementById('section1').style.display = 'none';
+
+    });
+
+    // Go back to Sign-Up Form if they click on Don't Have an account? 
+    document.getElementById('goto-signup').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        document.getElementById('signup-form').style.display = 'block';
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('login-signup-buttons').style.display = 'none';
+    });
+
+    // Go back to login if they click on Already have an account? 
+    document.getElementById('goto-login').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('signup-form').style.display = 'none';
+        document.getElementById('login-signup-buttons').style.display = 'none';
+    });
+
+    // Sign-up form submission - show role selection after submiting sign up info 
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // prevent form submission for now bc this is prototype
+        document.getElementById('signup-form').style.display = 'none';
+        document.getElementById('role-selection').style.display = 'block';
+    });
+
+    //What happens when user engages with the buttons to select their role 
+    document.querySelectorAll('.role-button').forEach(function(button) {
+        button.addEventListener('click', function() {
+            const selectedRole = this.getAttribute('data-role');
+            alert(`You selected: ${selectedRole}`); //just alerting what they selected for now until I add more logic
+        });
+    });
 
 
-<body>
-    <!--Just the home landing page-->
-    <section id="section1">
-        <header>
-            Welcome to MamaCircle 
-        </header>
-        <p>hello world for now!</p>
-    </section>
+//////////////////////////////
 
-    <!-- Begin Login or SignUp Section -->
-    <section id="sectionloginsignup" class="login-sign-up">
+    // ### Adding personal information after they have selected their role ### 
+    const roleButtons = document.querySelectorAll('.role-button');
+    const personalInfo = document.getElementById('personal-info');
+    const idUploadSection = document.getElementById('id-upload');
+    const nextButton = document.getElementById('next-button');
 
-        <!-- Login Form -->
-        <div id="login-form" class="form-container" style="display: none;">
-            <h2>Login</h2>
-            <form>
-                <label for="login-username">Username:</label>
-                <input type="text" id="login-username" name="login-username">
+    const pregnantContainer = document.getElementById('pregnant-container');
+    const professionalContainer = document.getElementById('professional-container');
+    let selectedRole = null; // Initialize selectedRole variable
+
+    const invite = document.getElementById('invite-form'); // Get the invite section element
+
+
+    
+    // After they select their role by clicking on it, then they are prompted to optionally upload their ID
+    function handleRoleButtonClick(button) {
+        selectedRole = button.getAttribute('data-role');
+        // Hide role selection form
+        document.getElementById('role-selection').style.display = 'none';
+        // Show personal information form
+        personalInfo.style.display = 'block';
+        // Show ID upload section (optional)
+        idUploadSection.style.display = 'block';
+        // Attach event listener to Next button
+    }
+
+    // Add click event listeners to role buttons
+    roleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            handleRoleButtonClick(button); // Call handleRoleButtonClick function when a role button is clicked
+            console.log('Selected Role:', selectedRole); // For demonstration, log the selected role to console
+        });
+    });
+
+
+    // When user clicks on the next button, they'll see their relevant role questions 
+    nextButton.addEventListener('click', function() {
+        idUploadSection.style.display = 'none';
+        showRoleSpecificQuestions(selectedRole);
+    });
+
+
+    // assigns relevant questions to user based on the role they selected 
+    function showRoleSpecificQuestions(role) {
+        if (role === 'pregnant') {
+            showPregnantQuestions();
+        }else if(role == 'professional'){
+            showProfessionalQuestions();
+        }
+    }
+
+    // Function to show the pregnant questions for pregnant users 
+    function showPregnantQuestions() {
+        pregnantContainer.style.display = 'block';
+    }
+
+        // Function to show the professional questions for professional users 
+        function showProfessionalQuestions() {
+            professionalContainer.style.display = 'block';
+        }
+    
+    // Event listener for personal info form submission
+    const personalForm = document.getElementById('personal-form');
+    personalForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Handle form submission logic here
+        alert('Form submitted successfully!');
+        document.getElementById('sectionloginsignup').style.display = 'none';
+        personalInfo.style.display = 'none';
+        document.getElementById('sectioninvite').style.display = 'block'; //asks user if they've been invited to join circle
+    });
+    // ### End Adding personal information after they have selected their role ### 
+
+    // Invite to Join Circle
+    document.getElementById('yes-button-code').addEventListener('click', function() {
+        document.getElementById('invite').style.display = 'none';
+        document.getElementById('yesinvite').style.display = 'block';
+        document.getElementById('noinvite').style.display = 'none'; 
+    });
+
+    document.getElementById('no-button-code').addEventListener('click', function() {
+        document.getElementById('invite').style.display = 'none';
+        document.getElementById('yesinvite').style.display = 'none';
+        document.getElementById('noinvite').style.display = 'block'; 
+    });
+
+ 
+    // Invite form submission
+    document.getElementById('invite-form').addEventListener('submit', function(event) {
+        event.preventDefault();
         
-                <label for="login-password">Password:</label>
-                <input type="password" id="login-password" name="login-password">
-                
-                <button type="submit">Login</button>
-                <p>Don't have an account? <a href="#" id="goto-signup">Sign Up</a></p>
-            </form>
-        </div>
+        const inviteCode = document.getElementById('invitecode').value;
 
-        <!-- SignUp Form -->
-        <div id="signup-form" class="form-container" style="display: none;">
-            <h2>Sign Up</h2>
-            <form>
-                <!-- Name Fields -->
-                <h3>Please enter your full legal name.</h3>
-                <label for="givenfirstname">Given Name (First Name)</label>
-                <input type="text" id="givenfirstname" name="givenfirstname" required>
-        
-                <label for="middlename">Middle Name</label>
-                <input type="text" id="middlename" name="middlename">
-        
-                <label for="surname">Surname (Last Name)</label>
-                <input type="text" id="surname" name="surname" required>
+        // Validate invite code (example validation)
+        if (inviteCode === '') {
+            alert('Please enter an invite code.');
+            return;
+        }
+
+        console.log('Invite code submitted:', inviteCode);
+
+        // Confirmation message
+        alert('Invite code submitted successfully!');
+        // window.location.href = 'confirmation.html'; // Redirect example
+        document.getElementById('sectioninvite').style.display = 'none';
+    });
 
 
-                 <!-- DOB Field -->
-                <h3>Please enter your date of birth</h3>
-                <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" required>
-
-                 <!-- Gender -->
-                 <h3>Please enter your gender identity</h3>
-                 <select id="gender" name="gender">
-                     <option value="" disabled selected>Select your gender</option>
-                     <option value="female">Woman</option>
-                     <option value="male">Man</option>
-                     <option value="transwoman">Transgender Woman</option>
-                     <option value="transman">Transgender Man</option>
-                     <option value="intersex">Intersex</option>
-                     <option value="twospirit">Two Spirit</option>
-                     <option value="non-binary">Non-Binary</option>
-                     <option value="prefer-not-to-say">Prefer not to say</option>
-                     <option value="other">Other</option>
-                 </select>
-
-                 <!-- Country -->
-                 <h3>Please enter your country of residence</h3>
-                 <select id="country" name="country">
-                     <option value="" disabled selected>Select your country</option>
-                     <option value="unitedstates">United States</option>
-                 </select>
-        
-                <!-- Email Field -->
-                <h3>Please enter a valid email address</h3>
-                <label for="signup-email">Email:</label>
-                <input type="email" id="signup-email" name="signup-email" required>
-
-                 <!-- Phone Number -->
-                 <h3>Please enter a valid phone number</h3>
-                 <label for="signup-phone">Phone Number:</label>
-                 <input type="tel" id="signup-phone" name="signup-phone" required>
-        
-                <!-- Username and Password Fields -->
-                <h3>Please create a username and password.</h3>
-                <p>Username cannot contain dashes (-) but can include letters, numbers, periods, and underscores. Username must start with a letter or number.</p>
-                <p>Passwords must contain at least one letter, one number, one special symbol (!@#$%&*(),.?). Password must be 10 characters long.</p>
-                
-                <label for="signup-username">Username:</label>
-                <input type="text" id="signup-username" name="signup-username" required>
-        
-                <label for="signup-password">Password:</label>
-                <input type="password" id="signup-password" name="signup-password" required>
-
-                <!-- NEED TO ADD TERMS AND CONDITIONS CHECKBOX-->
-        
-                <button type="submit">Sign Up</button>
-                <p>Already have an account? <a href="#" id="goto-login">Login</a></p>
-            </form>
-        </div>
-
-        <!-- Login and Sign Up Buttons -->
-        <div id="login-signup-buttons">
-            <button id="login-button" class="login-button">Login</button>
-            <button id="signup-button" class="signup-button">Sign Up</button>
-        </div>
-
-        <!-- Role Selection Form -->
-        <div id="role-selection" class="form-container" style="display: none;">
-            <h2>Are you...</h2>
-            <p>If more than one role is applicable to you, select the most pertinent one and you'll be able to update your profile later with more roles!</p>
-            <form id="role-form">
-                <button type="button" class="role-button" data-role="pregnant">Pregnant</button>
-                <button type="button" class="role-button" data-role="professional">A Healthcare Provider or Healthcare Support Professional</button>
-                <button type="button" class="role-button" data-role="friendfamily">A friend or family member</button>
-                <button type="button" class="role-button" data-role="member">A member of an organization, non-profit, or company</button>
-                <button type="button" class="role-button" data-role="learner">Someone who wants to learn more</button>
-            </form>
-        </div>
-
-        <!-- Personal Information Form -->
-        <div id="personal-info" class="form-container" style="display: none;">
-            <h2>Personal Information</h2>
-            <form id="personal-form">
-                <div id="id-upload">
-                    <h3>Please upload photos of your ID front and back.</h3>
-                    <label for="id-front">Upload ID Front:</label>
-                    <input type="file" id="id-front" name="id-front" accept="image/*">
-                    <label for="id-back">Upload ID Back:</label>
-                    <input type="file" id="id-back" name="id-back" accept="image/*">
-                    <p>If you do not wish to upload your ID at this time, you may do so later and still explore features of the app. However, you will need to verify your identity to join a circle. If you do not have an ID card, you will be given other options to verify your identity.</p>
-                    <button type="button" id="next-button">Next</button>
-                </div>
-
-                <div id="pregnant-container" style="display: none;">
-                    <label for="weeks">How many weeks have you been pregnant?</label>
-                    <input type="number" id="weeks" name="weeks"><br>
-                    <!-- need to add an option if pregnant user wants to upload their medical records and data when setting up the account -->
-                    <!-- <label for="id-front">Please upload an image of the front of your health insurance card.</label>
-                    <input type="file" id="id-front" name="id-front" accept="image/*" required>
-                    <label for="id-back">Please upload an image of the back of your health insurance card.</label>
-                    <input type="file" id="id-back" name="id-back" accept="image/*" required>
-                    <p>If you do not wish to upload your health insurance information at this time, you may do so at a later time.</p>-->
-                </div>
-
-                <div id="professional-container" style="display: none;">
-                    <h3>Please select your profession</h3>
-                    <select id="profession" name="profession">
-                        <option value="" disabled selected>Select your profession</option>
-                        <option value="physician">Medical Physician</option>
-                        <option value="naturopathic">Naturopathic Doctor</option>
-                        <option value="np">Nurse Practitioner</option>
-                        <option value="aprn">Advanced Practice Registered Nurse</option>
-                        <option value="nurse">Nurse</option>
-                        <option value="nursemidwife">Nurse MidWife</option>
-                        <option value="midwife">Non-Nurse MidWife</option>
-                        <option value="aide">Nurse or Home Health Aide</option>
-                        <option value="physicaltherapist">Physical Therapist</option>
-                        <option value="occupationaltherapist">Occupational Therapist</option>
-                        <option value="chiro">Chiropractor</option>
-                        <option value="socialworker">Social Worker</option>
-                        <option value="doula">Doula</option>
-                    </select>
-
-                    <label for="">Please enter your license number</label>
-                    <input type="text" id="license" name="license"><br>
-                    <!-- need to add an option if pregnant user wants to upload their medical records and data when setting up the account -->
-                    <!-- <label for="id-front">Please upload an image of the front of your health insurance card.</label>
-                    <input type="file" id="id-front" name="id-front" accept="image/*" required>
-                    <label for="id-back">Please upload an image of the back of your health insurance card.</label>
-                    <input type="file" id="id-back" name="id-back" accept="image/*" required>
-                    <p>If you do not wish to upload your health insurance information at this time, you may do so at a later time.</p>-->
-                </div>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    </section>
-    <!-- End Login or SignUp Section -->
-
-    <!-- Invite Section -->
-    <section id="sectioninvite" style="display: none;">
-        <div id="invite">
-            <h2>Has someone sent you an invite code to join their MamaCircle?</h2>
-            <button type="button" id="yes-button-code" data-role="yes">Yes, I have an invite code!</button>
-            <button type="button" id="no-button-code" data-role="no">No</button>
-        </div>
-
-        <div id="yesinvite" style="display: none;">
-            <h2>Great, please enter your invite code</h2>
-            <form id="invite-form">
-                <label for="invitecode">Enter your invite code</label>
-                <input type="text" id="invitecode" name="invitecode" required>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-
-        <div id="noinvite" style="display: none;">
-            <h2>You can join a circle later!</h2>
-        </div>
-    </section>
-
-    <section>
-        
-    </section>
-
-  
-
-
-    <script src="script.js"></script>
-</body>
-
-</html>
-
+});
