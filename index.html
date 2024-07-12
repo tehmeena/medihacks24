@@ -56,6 +56,28 @@
                 <h3>Please enter your date of birth</h3>
                 <label for="dob">Date of Birth:</label>
                 <input type="date" id="dob" name="dob" required>
+
+                 <!-- Gender -->
+                 <h3>Please enter your gender identity</h3>
+                 <select id="gender" name="gender">
+                     <option value="" disabled selected>Select your gender</option>
+                     <option value="female">Woman</option>
+                     <option value="male">Man</option>
+                     <option value="transwoman">Transgender Woman</option>
+                     <option value="transman">Transgender Man</option>
+                     <option value="intersex">Intersex</option>
+                     <option value="twospirit">Two Spirit</option>
+                     <option value="non-binary">Non-Binary</option>
+                     <option value="prefer-not-to-say">Prefer not to say</option>
+                     <option value="other">Other</option>
+                 </select>
+
+                 <!-- Country -->
+                 <h3>Please enter your country of residence</h3>
+                 <select id="country" name="country">
+                     <option value="" disabled selected>Select your country</option>
+                     <option value="unitedstates">United States</option>
+                 </select>
         
                 <!-- Email Field -->
                 <h3>Please enter a valid email address</h3>
@@ -77,6 +99,8 @@
         
                 <label for="signup-password">Password:</label>
                 <input type="password" id="signup-password" name="signup-password" required>
+
+                <!-- NEED TO ADD TERMS AND CONDITIONS CHECKBOX-->
         
                 <button type="submit">Sign Up</button>
                 <p>Already have an account? <a href="#" id="goto-login">Login</a></p>
@@ -95,7 +119,7 @@
             <p>If more than one role is applicable to you, select the most pertinent one and you'll be able to update your profile later with more roles!</p>
             <form id="role-form">
                 <button type="button" class="role-button" data-role="pregnant">Pregnant</button>
-                <button type="button" class="role-button" data-role="professional">A Healthcare Professional or Provider</button>
+                <button type="button" class="role-button" data-role="professional">A Healthcare Provider or Healthcare Support Professional</button>
                 <button type="button" class="role-button" data-role="friendfamily">A friend or family member</button>
                 <button type="button" class="role-button" data-role="member">A member of an organization, non-profit, or company</button>
                 <button type="button" class="role-button" data-role="learner">Someone who wants to learn more</button>
@@ -126,13 +150,50 @@
                     <input type="file" id="id-back" name="id-back" accept="image/*" required>
                     <p>If you do not wish to upload your health insurance information at this time, you may do so at a later time.</p>-->
                 </div>
+
+                <div id="professional-container" style="display: none;">
+                    <h3>Please select your profession</h3>
+                    <select id="profession" name="profession">
+                        <option value="" disabled selected>Select your profession</option>
+                        <option value="physician">Medical Physician</option>
+                        <option value="naturopathic">Naturopathic Doctor</option>
+                        <option value="np">Nurse Practitioner</option>
+                        <option value="aprn">Advanced Practice Registered Nurse</option>
+                        <option value="nurse">Nurse</option>
+                        <option value="nursemidwife">Nurse MidWife</option>
+                        <option value="midwife">Non-Nurse MidWife</option>
+                        <option value="aide">Nurse or Home Health Aide</option>
+                        <option value="physicaltherapist">Physical Therapist</option>
+                        <option value="occupationaltherapist">Occupational Therapist</option>
+                        <option value="chiro">Chiropractor</option>
+                        <option value="socialworker">Social Worker</option>
+                        <option value="doula">Doula</option>
+                    </select>
+
+                    <label for="">Please enter your license number</label>
+                    <input type="text" id="license" name="license"><br>
+                    <!-- need to add an option if pregnant user wants to upload their medical records and data when setting up the account -->
+                    <!-- <label for="id-front">Please upload an image of the front of your health insurance card.</label>
+                    <input type="file" id="id-front" name="id-front" accept="image/*" required>
+                    <label for="id-back">Please upload an image of the back of your health insurance card.</label>
+                    <input type="file" id="id-back" name="id-back" accept="image/*" required>
+                    <p>If you do not wish to upload your health insurance information at this time, you may do so at a later time.</p>-->
+                </div>
                 <button type="submit">Submit</button>
             </form>
         </div>
-
-
     </section>
     <!-- End Login or SignUp Section -->
+
+    <!-- Invite Section -->
+    <section>
+        <div id="invite" style="display: none;">
+            <h2>Has someone sent you an invite or QR code to join their MamaCircle?</h2>
+            <button type="button" id="yes" data-role="yes">Yes, I have an invite code!</button>
+            <button type="button" id="yes" data-role="yes">Yes, I have a QR code!</button>
+            <button type="button" id="no" data-role="no">No</button>
+        </div>
+    </section>
 
   
 
@@ -140,4 +201,5 @@
     <script src="script.js"></script>
 </body>
 
+</html>
 
