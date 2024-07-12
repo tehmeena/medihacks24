@@ -55,13 +55,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const personalInfo = document.getElementById('personal-info');
     const idUploadSection = document.getElementById('id-upload');
     const nextButton = document.getElementById('next-button');
+
     const pregnantContainer = document.getElementById('pregnant-container');
+    const professionalContainer = document.getElementById('professional-container');
     let selectedRole = null; // Initialize selectedRole variable
+
+    const invite = document.getElementById('invite'); // Get the invite section element
+
 
     
     // After they select their role by clicking on it, then they are prompted to optionally upload their ID
     function handleRoleButtonClick(button) {
-        selectedRole = document.querySelector('.role-button').getAttribute('data-role');
+        selectedRole = button.getAttribute('data-role');
         // Hide role selection form
         document.getElementById('role-selection').style.display = 'none';
         // Show personal information form
@@ -91,11 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function showRoleSpecificQuestions(role) {
         if (role === 'pregnant') {
             showPregnantQuestions();
-            // Add conditions for other roles if needed
-            // } else if (role === 'x') {
-            //     showxFormSections();
-            // } else if (role === 'y') {
-            //     showyFormSections();
+        }else if(role == 'professional'){
+            showProfessionalQuestions();
         }
     }
 
@@ -104,7 +106,11 @@ document.addEventListener('DOMContentLoaded', function() {
         pregnantContainer.style.display = 'block';
     }
 
-
+        // Function to show the professional questions for professional users 
+        function showProfessionalQuestions() {
+            professionalContainer.style.display = 'block';
+        }
+    
     // Event listener for personal info form submission
     const personalForm = document.getElementById('personal-form');
     personalForm.addEventListener('submit', function(event) {
@@ -115,6 +121,12 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('Form submitted successfully!');
         // Example: Redirect to another page
         // window.location.href = 'confirmation.html';
+        personalInfo.style.display = 'none';
+        invite.style.display = 'block'; //asks user if they've been invited to join a circle
     });
+
+
+    // ### End Adding personal information after they have selected their role ### 
+    
 
 });
