@@ -1,23 +1,54 @@
 import React, { useState } from 'react';
+import './App.css';
+import Forms from './Forms'; 
 
 const App = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
+  const [showRoleForm, setShowRoleForm] = useState(false);
+  const [selectedRole, setSelectedRole] = useState('');
 
   const handleLoginClick = () => {
     setShowLoginForm(true);
     setShowSignUpForm(false);
+    setShowRoleForm(false);
   };
 
   const handleSignUpClick = () => {
     setShowLoginForm(false);
     setShowSignUpForm(true);
+    setShowRoleForm(false);
+    console.log('Sign Up button clicked which means showroleform is FALSE');
   };
 
   const handleToggleForm = () => {
     setShowLoginForm(!showLoginForm);
     setShowSignUpForm(!showSignUpForm);
+    setShowRoleForm(false);
   };
+
+  const handleSignupFormSubmit = (e) => {
+    e.preventDefault();
+    setShowSignUpForm(false);
+    setShowRoleForm(true);
+    console.log(showRoleForm);
+    console.log('Sign Up form submitted which means showroleform is TRUE');
+  };
+
+  const handleRoleChange = (e) => {
+    setSelectedRole(e.target.value);
+  };
+
+  const handleRoleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log('Role selected:', selectedRole);
+    // Additional logic for handling role-specific questions can be added here
+  };
+
+  console.log('showLoginForm:', showLoginForm);
+  console.log('showSignUpForm:', showSignUpForm);
+  console.log('showRoleForm:', showRoleForm);
+  console.log('selectedRole:', selectedRole);
 
   return (
     <div>
@@ -28,39 +59,17 @@ const App = () => {
         <button onClick={handleSignUpClick}>Sign Up</button>
       </section>
 
-      {/* Login Form */}
-      {showLoginForm && (
-        <div className="form-container">
-          <h2>Login</h2>
-          <form>
-            <label htmlFor="login-username">Username:</label>
-            <input type="text" id="login-username" name="login-username" required />
-
-            <label htmlFor="login-password">Password:</label>
-            <input type="password" id="login-password" name="login-password" required />
-
-            <button type="submit">Login</button>
-            <p>Don't have an account? <button onClick={handleToggleForm}>Sign Up</button></p>
-          </form>
-        </div>
-      )}
-
-      {/* Sign Up Form */}
-      {showSignUpForm && (
-        <div className="form-container">
-          <h2>Sign Up</h2>
-          <form>
-            <label htmlFor="signup-username">Username:</label>
-            <input type="text" id="signup-username" name="signup-username" required />
-
-            <label htmlFor="signup-password">Password:</label>
-            <input type="password" id="signup-password" name="signup-password" required />
-
-            <button type="submit">Sign Up</button>
-            <p>Already have an account? <button onClick={handleToggleForm}>Login</button></p>
-          </form>
-        </div>
-      )}
+      {/* Render Forms component */}
+      <Forms
+        showLoginForm={showLoginForm}
+        showSignUpForm={showSignUpForm}
+        showRoleForm={showRoleForm}
+        selectedRole={selectedRole}
+        handleToggleForm={handleToggleForm}
+        handleRoleChange={handleRoleChange}
+        handleRoleFormSubmit={handleRoleFormSubmit}
+        handleSignupFormSubmit={handleSignupFormSubmit}
+      />
     </div>
   );
 };
