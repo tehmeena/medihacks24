@@ -1,163 +1,135 @@
-
-// Show sign-up form when sign-up button is clicked
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.signup-button').addEventListener('click', function() {
-        document.getElementById('signup-form').style.display = 'block';
-        document.getElementById('login-form').style.display = 'none'; // Hide login form 
-        document.getElementById('login-signup-buttons').style.display = 'none';
-        document.getElementById('section1').style.display = 'none';
-
-    });
-
-    // Show login form when login button is clicked
-    document.querySelector('.login-button').addEventListener('click', function() {
-        document.getElementById('login-form').style.display = 'block';
-        document.getElementById('signup-form').style.display = 'none'; // Hide sign-up form 
-        document.getElementById('login-signup-buttons').style.display = 'none';
-        document.getElementById('section1').style.display = 'none';
-
-    });
-
-    // Go back to Sign-Up Form if they click on Don't Have an account? 
-    document.getElementById('goto-signup').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
-        document.getElementById('signup-form').style.display = 'block';
-        document.getElementById('login-form').style.display = 'none';
-        document.getElementById('login-signup-buttons').style.display = 'none';
-    });
-
-    // Go back to login if they click on Already have an account? 
-    document.getElementById('goto-login').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
-        document.getElementById('login-form').style.display = 'block';
-        document.getElementById('signup-form').style.display = 'none';
-        document.getElementById('login-signup-buttons').style.display = 'none';
-    });
-
-    // Sign-up form submission - show role selection after submiting sign up info 
-    document.getElementById('signup-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // prevent form submission for now bc this is prototype
-        document.getElementById('signup-form').style.display = 'none';
-        document.getElementById('role-selection').style.display = 'block';
-    });
-
-    //What happens when user engages with the buttons to select their role 
-    document.querySelectorAll('.role-button').forEach(function(button) {
-        button.addEventListener('click', function() {
-            const selectedRole = this.getAttribute('data-role');
-            alert(`You selected: ${selectedRole}`); //just alerting what they selected for now until I add more logic
-        });
-    });
-
-
-//////////////////////////////
-
-    // ### Adding personal information after they have selected their role ### 
-    const roleButtons = document.querySelectorAll('.role-button');
+document.addEventListener('DOMContentLoaded', () => {
+    const welcomeSection = document.getElementById('section1');
+    const loginSignupSection = document.getElementById('sectionloginsignup');
+    const loginButton = document.getElementById('login-button');
+    const signUpButton = document.getElementById('signup-button');
+    const gotoSignUp = document.getElementById('goto-signup');
+    const gotoLogin = document.getElementById('goto-login');
+    const loginForm = document.getElementById('login-form');
+    const signUpForm = document.getElementById('signup-form');
+    const roleSelection = document.getElementById('role-selection');
     const personalInfo = document.getElementById('personal-info');
-    const idUploadSection = document.getElementById('id-upload');
-    const nextButton = document.getElementById('next-button');
+    const inviteSection = document.getElementById('sectioninvite');
+    const dashboardSection = document.getElementById('sectiondashboard');
 
-    const pregnantContainer = document.getElementById('pregnant-container');
-    const professionalContainer = document.getElementById('professional-container');
-    let selectedRole = null; // Initialize selectedRole variable
+    const hideButtons = () => {
+        loginButton.style.display = 'none';
+        signUpButton.style.display = 'none';
+    };
 
-    const invite = document.getElementById('invite-form'); // Get the invite section element
-
-
-    
-    // After they select their role by clicking on it, then they are prompted to optionally upload their ID
-    function handleRoleButtonClick(button) {
-        selectedRole = button.getAttribute('data-role');
-        // Hide role selection form
-        document.getElementById('role-selection').style.display = 'none';
-        // Show personal information form
-        personalInfo.style.display = 'block';
-        // Show ID upload section (optional)
-        idUploadSection.style.display = 'block';
-        // Attach event listener to Next button
+    const hideWelcome = () => {
+      welcomeSection.style.display = 'none';
     }
+    
+    // Show login form
+    loginButton.addEventListener('click', () => {
+        hideWelcome();
+        hideButtons();
+        loginForm.style.display = 'block';
+        signUpForm.style.display = 'none';
+        roleSelection.style.display = 'none';
+        personalInfo.style.display = 'none';
+        inviteSection.style.display = 'none';
+        dashboardSection.style.display = 'none';
+    });
 
-    // Add click event listeners to role buttons
+    // Show sign up form
+    signUpButton.addEventListener('click', () => {
+        hideWelcome();
+        hideButtons();
+        signUpForm.style.display = 'block';
+        loginForm.style.display = 'none';
+        roleSelection.style.display = 'none';
+        personalInfo.style.display = 'none';
+        inviteSection.style.display = 'none';
+        dashboardSection.style.display = 'none';
+    });
+
+    // Switch to sign up form from login
+    gotoSignUp.addEventListener('click', (e) => {
+        e.preventDefault();
+        signUpForm.style.display = 'block';
+        loginForm.style.display = 'none';
+    });
+
+    // Switch to login form from sign up
+    gotoLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginForm.style.display = 'block';
+        signUpForm.style.display = 'none';
+    });
+
+    // login form submission
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Handle login logic here
+        console.log('Login form submitted');
+        // Simulate successful login
+        dashboardSection.style.display = 'block';
+        loginForm.style.display = 'none';
+    });
+
+    // sign up form submission
+    signUpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Handle sign up logic here
+        console.log('Sign up form submitted');
+        // Show role selection after successful sign up
+        roleSelection.style.display = 'block';
+        signUpForm.style.display = 'none';
+    });
+
+    // role selection
+    const roleButtons = document.querySelectorAll('.role-button');
     roleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            handleRoleButtonClick(button); // Call handleRoleButtonClick function when a role button is clicked
-            console.log('Selected Role:', selectedRole); // For demonstration, log the selected role to console
+        button.addEventListener('click', (e) => {
+            const role = e.target.dataset.role;
+            roleSelection.style.display = 'none';
+            personalInfo.style.display = 'block';
+            handleRoleSelection(role);
         });
     });
 
-
-    // When user clicks on the next button, they'll see their relevant role questions 
-    nextButton.addEventListener('click', function() {
-        idUploadSection.style.display = 'none';
-        showRoleSpecificQuestions(selectedRole);
+    //when user clicks next it takes them to the invite section 
+    const nextButton = document.getElementById('next-button');
+    nextButton.addEventListener('click', () => {
+        inviteSection.style.display = 'block';
+        personalInfo.style.display = 'none';
     });
 
+    const handleRoleSelection = (role) => {
+        const pregnantContainer = document.getElementById('pregnant-container');
+        const professionalContainer = document.getElementById('professional-container');
 
-    // assigns relevant questions to user based on the role they selected 
-    function showRoleSpecificQuestions(role) {
+        pregnantContainer.style.display = 'none';
+        professionalContainer.style.display = 'none';
+
         if (role === 'pregnant') {
-            showPregnantQuestions();
-        }else if(role == 'professional'){
-            showProfessionalQuestions();
-        }
-    }
-
-    // Function to show the pregnant questions for pregnant users 
-    function showPregnantQuestions() {
-        pregnantContainer.style.display = 'block';
-    }
-
-        // Function to show the professional questions for professional users 
-        function showProfessionalQuestions() {
+            pregnantContainer.style.display = 'block';
+        } else if (role === 'professional') {
             professionalContainer.style.display = 'block';
         }
-    
-    // Event listener for personal info form submission
+    };
+
+    //personal info form submission
     const personalForm = document.getElementById('personal-form');
-    personalForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Handle form submission logic here
-        alert('Form submitted successfully!');
-        document.getElementById('sectionloginsignup').style.display = 'none';
+    personalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Handle personal info submission logic here
+        console.log('Personal info form submitted');
+        // Simulate moving to dashboard or next section
+        dashboardSection.style.display = 'block';
         personalInfo.style.display = 'none';
-        document.getElementById('sectioninvite').style.display = 'block'; //asks user if they've been invited to join circle
-    });
-    // ### End Adding personal information after they have selected their role ### 
-
-    // Invite to Join Circle
-    document.getElementById('yes-button-code').addEventListener('click', function() {
-        document.getElementById('invite').style.display = 'none';
-        document.getElementById('yesinvite').style.display = 'block';
-        document.getElementById('noinvite').style.display = 'none'; 
     });
 
-    document.getElementById('no-button-code').addEventListener('click', function() {
-        document.getElementById('invite').style.display = 'none';
-        document.getElementById('yesinvite').style.display = 'none';
-        document.getElementById('noinvite').style.display = 'block'; 
+    //  invite section buttons
+    document.getElementById('yes-button-code').addEventListener('click', () => {
+        // Handle "Yes" button logic here
+        console.log('Yes, I have an invite code');
     });
 
- 
-    // Invite form submission
-    document.getElementById('invite-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const inviteCode = document.getElementById('invitecode').value;
-
-        // Validate invite code (example validation)
-        if (inviteCode === '') {
-            alert('Please enter an invite code.');
-            return;
-        }
-
-        console.log('Invite code submitted:', inviteCode);
-
-        // Confirmation message
-        alert('Invite code submitted successfully!');
-        // window.location.href = 'confirmation.html'; // Redirect example
-        document.getElementById('sectioninvite').style.display = 'none';
+    document.getElementById('no-button-code').addEventListener('click', () => {
+        // Handle "No" button logic here
+        console.log('No, I do not have an invite code');
     });
-
-
 });
