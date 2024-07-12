@@ -47,5 +47,49 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    //Adding personal information after they have selected their role 
+    const roleButtons = document.querySelectorAll('.role-button');
+    const personalInfo = document.getElementById('personal-info');
+    const pregnantContainer = document.getElementById('pregnant-container');
+
+    // Function to show the pregnant questions for pregnant users 
+    function showPregnantQuestions() {
+        pregnantContainer.style.display = 'block';
+    }
+
+    // Function to hide the pregnant questions for non-pregnant users 
+    function hidePregnantQuestions() {
+        pregnantContainer.style.display = 'none';
+    }
+
+    // Event listener for role buttons
+    roleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const role = button.getAttribute('data-role');
+
+            // Show the personal info section
+            personalInfo.style.display = 'block';
+
+            // Show/hide the pregnant container based on role
+            if (role === 'pregnant') {
+                showPregnantQuestions();
+            } else {
+                hidePregnantQuestions();
+            }
+        });
+    });
+
+
+    // Event listener for personal info form submission
+    const personalForm = document.getElementById('personal-form');
+    personalForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Handle form submission logic here
+        // Example: Validate inputs, upload files, etc.
+        // After successful submission, redirect or show confirmation
+        alert('Form submitted successfully!');
+        // Example: Redirect to another page
+        // window.location.href = 'confirmation.html';
+    });
 
 });
