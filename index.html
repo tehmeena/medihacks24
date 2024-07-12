@@ -43,18 +43,23 @@
                 <!-- Name Fields -->
                 <h3>Please enter your full legal name.</h3>
                 <label for="givenfirstname">Given Name (First Name)</label>
-                <input type="text" id="givenfirstname" name="givenfirstname">
+                <input type="text" id="givenfirstname" name="givenfirstname" required>
         
                 <label for="middlename">Middle Name</label>
                 <input type="text" id="middlename" name="middlename">
         
                 <label for="surname">Surname (Last Name)</label>
-                <input type="text" id="surname" name="surname">
+                <input type="text" id="surname" name="surname" required>
         
                 <!-- Email Field -->
                 <h3>Please enter a valid email address</h3>
                 <label for="signup-email">Email:</label>
-                <input type="email" id="signup-email" name="signup-email">
+                <input type="email" id="signup-email" name="signup-email" required>
+
+                 <!-- Phone Number -->
+                 <h3>Please enter a valid phone number</h3>
+                 <label for="signup-phone">Phone Number:</label>
+                 <input type="tel" id="signup-phone" name="signup-phone" required>
         
                 <!-- Username and Password Fields -->
                 <h3>Please create a username and password.</h3>
@@ -62,10 +67,10 @@
                 <p>Passwords must contain at least one letter, one number, one special symbol (!@#$%&*(),.?). Password must be 10 characters long.</p>
                 
                 <label for="signup-username">Username:</label>
-                <input type="text" id="signup-username" name="signup-username">
+                <input type="text" id="signup-username" name="signup-username" required>
         
                 <label for="signup-password">Password:</label>
-                <input type="password" id="signup-password" name="signup-password">
+                <input type="password" id="signup-password" name="signup-password" required>
         
                 <button type="submit">Sign Up</button>
                 <p>Already have an account? <a href="#" id="goto-login">Login</a></p>
@@ -89,6 +94,38 @@
                 <button type="button" class="role-button" data-role="member">A member of an organization, non-profit, or company</button>
                 <button type="button" class="role-button" data-role="learner">Someone who wants to learn more</button>
                 <button type="submit">Next</button>
+            </form>
+        </div>
+
+        <!-- Personal Information Form -->
+        <div id="personal-info" class="form-container" style="display: none;">
+            <h2>Personal Information</h2>
+            <form id="personal-form">
+                <div>
+                    <h3>Please enter your date of birth</h3>
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required><br>
+                    <h3>Please upload photos of your ID front and back.</h3>
+                    <label for="id-front">Upload ID Front:</label>
+                    <input type="file" id="id-front" name="id-front" accept="image/*" required>
+
+                    <label for="id-back">Upload ID Back:</label>
+                    <input type="file" id="id-back" name="id-back" accept="image/*" required>
+                    <p>If you do not wish to upload your ID at this time, you may do so later and still explore features of the app. However, you will need to verify your identity to join a circle. If you do not have an ID card, you will be given other options to verify your identity.</p>
+                </div>
+
+                <div id="pregnant-container" style="display: none;">
+                    <label for="weeks">How many weeks have you been pregnant?</label>
+                    <input type="number" id="weeks" name="weeks"><br>
+                    <!-- need to add an option if pregnant user wants to upload their medical records and data when setting up the account -->
+                    <!-- <label for="id-front">Please upload an image of the front of your health insurance card.</label>
+                    <input type="file" id="id-front" name="id-front" accept="image/*" required>
+                    <label for="id-back">Please upload an image of the back of your health insurance card.</label>
+                    <input type="file" id="id-back" name="id-back" accept="image/*" required>
+                    <p>If you do not wish to upload your health insurance information at this time, you may do so at a later time.</p>-->
+
+                </div>
+                <button type="submit">Submit</button>
             </form>
         </div>
 
