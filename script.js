@@ -47,37 +47,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    //Adding personal information after they have selected their role 
+
+//////////////////////////////
+
+    // ### Adding personal information after they have selected their role ### 
     const roleButtons = document.querySelectorAll('.role-button');
     const personalInfo = document.getElementById('personal-info');
+    const idUploadSection = document.getElementById('id-upload');
+    const nextButton = document.getElementById('next-button');
     const pregnantContainer = document.getElementById('pregnant-container');
+    let selectedRole = null; // Initialize selectedRole variable
+
+    
+    // After they select their role by clicking on it, then they are prompted to optionally upload their ID
+    function handleRoleButtonClick(button) {
+        selectedRole = document.querySelector('.role-button').getAttribute('data-role');
+        // Hide role selection form
+        document.getElementById('role-selection').style.display = 'none';
+        // Show personal information form
+        personalInfo.style.display = 'block';
+        // Show ID upload section (optional)
+        idUploadSection.style.display = 'block';
+        // Attach event listener to Next button
+    }
+
+    // Add click event listeners to role buttons
+    roleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            handleRoleButtonClick(button); // Call handleRoleButtonClick function when a role button is clicked
+            console.log('Selected Role:', selectedRole); // For demonstration, log the selected role to console
+        });
+    });
+
+
+    // When user clicks on the next button, they'll see their relevant role questions 
+    nextButton.addEventListener('click', function() {
+        idUploadSection.style.display = 'none';
+        showRoleSpecificQuestions(selectedRole);
+    });
+
+
+    // assigns relevant questions to user based on the role they selected 
+    function showRoleSpecificQuestions(role) {
+        if (role === 'pregnant') {
+            showPregnantQuestions();
+            // Add conditions for other roles if needed
+            // } else if (role === 'x') {
+            //     showxFormSections();
+            // } else if (role === 'y') {
+            //     showyFormSections();
+        }
+    }
 
     // Function to show the pregnant questions for pregnant users 
     function showPregnantQuestions() {
         pregnantContainer.style.display = 'block';
     }
-
-    // Function to hide the pregnant questions for non-pregnant users 
-    function hidePregnantQuestions() {
-        pregnantContainer.style.display = 'none';
-    }
-
-    // Event listener for role buttons
-    roleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const role = button.getAttribute('data-role');
-
-            // Show the personal info section
-            personalInfo.style.display = 'block';
-
-            // Show/hide the pregnant container based on role
-            if (role === 'pregnant') {
-                showPregnantQuestions();
-            } else {
-                hidePregnantQuestions();
-            }
-        });
-    });
 
 
     // Event listener for personal info form submission
