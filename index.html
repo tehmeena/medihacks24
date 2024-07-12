@@ -50,6 +50,12 @@
         
                 <label for="surname">Surname (Last Name)</label>
                 <input type="text" id="surname" name="surname" required>
+
+
+                 <!-- DOB Field -->
+                <h3>Please enter your date of birth</h3>
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
         
                 <!-- Email Field -->
                 <h3>Please enter a valid email address</h3>
@@ -93,7 +99,6 @@
                 <button type="button" class="role-button" data-role="friendfamily">A friend or family member</button>
                 <button type="button" class="role-button" data-role="member">A member of an organization, non-profit, or company</button>
                 <button type="button" class="role-button" data-role="learner">Someone who wants to learn more</button>
-                <button type="submit">Next</button>
             </form>
         </div>
 
@@ -101,17 +106,14 @@
         <div id="personal-info" class="form-container" style="display: none;">
             <h2>Personal Information</h2>
             <form id="personal-form">
-                <div>
-                    <h3>Please enter your date of birth</h3>
-                    <label for="dob">Date of Birth:</label>
-                    <input type="date" id="dob" name="dob" required><br>
+                <div id="id-upload">
                     <h3>Please upload photos of your ID front and back.</h3>
                     <label for="id-front">Upload ID Front:</label>
-                    <input type="file" id="id-front" name="id-front" accept="image/*" required>
-
+                    <input type="file" id="id-front" name="id-front" accept="image/*">
                     <label for="id-back">Upload ID Back:</label>
-                    <input type="file" id="id-back" name="id-back" accept="image/*" required>
+                    <input type="file" id="id-back" name="id-back" accept="image/*">
                     <p>If you do not wish to upload your ID at this time, you may do so later and still explore features of the app. However, you will need to verify your identity to join a circle. If you do not have an ID card, you will be given other options to verify your identity.</p>
+                    <button type="button" id="next-button">Next</button>
                 </div>
 
                 <div id="pregnant-container" style="display: none;">
@@ -123,7 +125,6 @@
                     <label for="id-back">Please upload an image of the back of your health insurance card.</label>
                     <input type="file" id="id-back" name="id-back" accept="image/*" required>
                     <p>If you do not wish to upload your health insurance information at this time, you may do so at a later time.</p>-->
-
                 </div>
                 <button type="submit">Submit</button>
             </form>
