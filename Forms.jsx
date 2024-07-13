@@ -40,8 +40,8 @@ const SignUpForm = ({ handleToggleForm, handleSignupFormSubmit }) => (
             <h3>Please enter your gender identity</h3>
             <select id="signup-gender" name="signup-gender" required>
                 <option value="" disabled selected>Select your gender</option>
-                <option value="female">Woman</option>
-                <option value="male">Man</option>
+                <option value="woman">Woman</option>
+                <option value="man">Man</option>
                 <option value="transwoman">Transgender Woman</option>
                 <option value="transman">Transgender Man</option>
                 <option value="intersex">Intersex</option>
@@ -132,6 +132,8 @@ const RoleForm = ({ selectedRole, selectedProfession, handleRoleChange, handleRo
                         <option value="chiro">Chiropractor</option>
                         <option value="socialworker">Social Worker</option>
                         <option value="doula">Doula</option>
+                        <option value="dietitian">Dietitian</option>
+                        <option value="nutritionist">Nutritionist</option>
                     </select>
 
                     <label htmlFor="license">Please enter your license number</label>
