@@ -6,6 +6,7 @@ const App = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
   const [showRoleForm, setShowRoleForm] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const [selectedRole, setSelectedRole] = useState('');
 
   const handleLoginClick = () => {
@@ -18,7 +19,6 @@ const App = () => {
     setShowLoginForm(false);
     setShowSignUpForm(true);
     setShowRoleForm(false);
-    console.log('Sign Up button clicked which means showroleform is FALSE');
   };
 
   const handleToggleForm = () => {
@@ -29,11 +29,17 @@ const App = () => {
 
   const handleSignupFormSubmit = (e) => {
     e.preventDefault();
+    console.log('Form submitted successfully');
     setShowSignUpForm(false);
     setShowRoleForm(true);
-    console.log(showRoleForm);
-    console.log('Sign Up form submitted which means showroleform is TRUE');
+    setIsLoggedIn(true);
   };
+
+  const handleLoginFormSubmit = (e) => {
+    //
+
+  };
+
 
   const handleRoleChange = (e) => {
     setSelectedRole(e.target.value);
@@ -42,24 +48,19 @@ const App = () => {
   const handleRoleFormSubmit = (e) => {
     e.preventDefault();
     console.log('Role selected:', selectedRole);
-    // Additional logic for handling role-specific questions can be added here
   };
-
-  console.log('showLoginForm:', showLoginForm);
-  console.log('showSignUpForm:', showSignUpForm);
-  console.log('showRoleForm:', showRoleForm);
-  console.log('selectedRole:', selectedRole);
 
   return (
     <div>
-      <section id="section1">
-        <header>Welcome</header>
-        <p>Hello world for now!</p>
-        <button onClick={handleLoginClick}>Login</button>
-        <button onClick={handleSignUpClick}>Sign Up</button>
-      </section>
+        {!isLoggedIn && ( //Show welcome page as long as user is not logged in 
+        <section id="section1">
+          <header>Welcome</header>
+          <p>Hello world for now!</p>
+          <button onClick={handleLoginClick}>Login</button>
+          <button onClick={handleSignUpClick}>Sign Up</button>
+        </section>
+      )}
 
-      {/* Render Forms component */}
       <Forms
         showLoginForm={showLoginForm}
         showSignUpForm={showSignUpForm}
