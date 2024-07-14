@@ -37,25 +37,54 @@ const InviteCodeForm = ({ handleInviteCodeSubmit }) => {
     );
 };
 
-//placeholder for newsfeed content 
-const NewsFeed = () => {
-    return <div>News Feed Content</div>;
-};
 
-// Community Feed content
-const CommunityFeed = ({ handleInviteCodeSubmit }) => {
+const CommunityFeed = ({ selectedRole }) => {
     return (
-        <div>
-            <div>Community Feed Content</div>
-            <NewsFeed />
-            <InviteCodeForm handleInviteCodeSubmit={handleInviteCodeSubmit} />
-            {/* Add other community feed features here */}
+        <div className="community-section">
+            {/* Left Side - Chatbox and Connections */}
+            <div className="left-side">
+                <div className="chatbox">
+                    <h3>Chatbox</h3>
+                    <div className="connections-panel">
+                        {/* Placeholder for connections (circles)? */}
+                        <h4>Connections</h4>
+                        {/* Add connections here */}
+                        <div className="connection-circle"></div>
+                        <div className="connection-circle"></div>
+                        <div className="connection-circle"></div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Right Side - Fetal Development / Directory and Alerts/News */}
+            <div className="right-side">
+                {/* Top Container */}
+                <div className="top-container">
+                    {selectedRole === 'pregnant' ? (
+                        <>
+                            <h3>Fetal Development</h3>
+                            {/* Placeholder for fetal development information */}
+                        </>
+                    ) : (
+                        <>
+                            <h3>Directory</h3>
+                            {/* Placeholder for directory of connections/circles */}
+                        </>
+                    )}
+                </div>
+
+                {/* Bottom Container */}
+                <div className="bottom-container">
+                    <h3>Alerts/News</h3>
+                    {/* Placeholder for alerts/news */}
+                </div>
+            </div>
         </div>
     );
 };
 
 //  Profile content
-const Profile = ({ user, users }) => {
+const Profile = ({ user, users, handleInviteCodeSubmit }) => {
     return (
         <div className="profile">
             <h2>Profile</h2>
@@ -67,6 +96,7 @@ const Profile = ({ user, users }) => {
             {user.role === 'Provider' && <p>License Number: {user.licenseNumber}</p>}
             {user.role === 'Pregnant' && <p>Weeks Pregnant: {user.weeksPregnant}</p>}
             <p>Invite Code: {user.inviteCode}</p>
+            <InviteCodeForm handleInviteCodeSubmit={handleInviteCodeSubmit} />
         </div>
     );
 };
@@ -84,7 +114,7 @@ const Notebook = () => {
 };
 
 // Main layout component for displaying selected content area
-const DashboardLayout = ({ user, users, setUsers }) => {
+const DashboardLayout = ({ user, users, setUsers, selectedRole }) => {
     const [selectedSection, setSelectedSection] = useState('communityFeed');
 
     const handleInviteCodeSubmit = (inviteCode) => {
@@ -116,9 +146,9 @@ const DashboardLayout = ({ user, users, setUsers }) => {
     const renderContent = () => {
         switch (selectedSection) {
             case 'profile':
-                return <Profile user={user} />;
+                return <Profile user={user} handleInviteCodeSubmit={handleInviteCodeSubmit} />;
             case 'communityFeed':
-                return <CommunityFeed handleInviteCodeSubmit={handleInviteCodeSubmit} />;
+                return <CommunityFeed selectedRole={selectedRole} />;
             case 'mapCalendar':
                 return <MapCalendar />;
             case 'safety':
@@ -126,7 +156,7 @@ const DashboardLayout = ({ user, users, setUsers }) => {
             case 'notebook':
                 return <Notebook />;
             default:
-                return <CommunityFeed handleInviteCodeSubmit={handleInviteCodeSubmit} />;
+                return <CommunityFeed />;
         }
     };
 
@@ -141,8 +171,8 @@ const DashboardLayout = ({ user, users, setUsers }) => {
 };
 
 
-const Dashboards = ({ user, users, handleInviteCodeSubmit, setUsers }) => {
-    return <DashboardLayout user={user} handleInviteCodeSubmit={handleInviteCodeSubmit} users={users} setUsers={setUsers} />;
+const Dashboards = ({ user, users, handleInviteCodeSubmit, setUsers, selectedRole }) => {
+    return <DashboardLayout user={user} handleInviteCodeSubmit={handleInviteCodeSubmit} users={users} setUsers={setUsers} selectedRole={selectedRole} />;
 };
 
 export { Dashboards };
