@@ -84,10 +84,12 @@ const Notebook = () => {
 };
 
 // Main layout component for displaying selected content area
-const DashboardLayout = ({ user, users }) => {
+const DashboardLayout = ({ user, users, setUsers }) => {
     const [selectedSection, setSelectedSection] = useState('communityFeed');
 
     const handleInviteCodeSubmit = (inviteCode) => {
+        console.log('Before handling invite submission:');
+        console.log(`User ${user.username} has ${user.connections.length} connections.`);
         console.log('Received invite code:', inviteCode);
         const invitedUser = users.find(user => user.inviteCode === inviteCode.trim());
         console.log('Invited user details:', invitedUser);
@@ -95,6 +97,16 @@ const DashboardLayout = ({ user, users }) => {
             // Notify the invited user
             alert(`${invitedUser.firstname} has been notified of your connection request.`);
             // Logic to notify the user and handle acceptance
+
+            //invited user and inviter user get added to each other's connections 
+            invitedUser.connections.push(user.username);
+            user.connections.push(invitedUser.username);
+
+            setUsers([...users]);
+            console.log('After handling invite submission:');
+            console.log(`User ${user.username} now has ${user.connections.length} connections.`);
+            console.log(`Invited user ${invitedUser.username} now has ${invitedUser.connections.length} connections.`);
+
         } else {
             alert('Invalid invite code.');
         }
@@ -129,8 +141,8 @@ const DashboardLayout = ({ user, users }) => {
 };
 
 
-const Dashboards = ({ user, users, handleInviteCodeSubmit }) => {
-    return <DashboardLayout user={user} handleInviteCodeSubmit={handleInviteCodeSubmit} users={users} />;
+const Dashboards = ({ user, users, handleInviteCodeSubmit, setUsers }) => {
+    return <DashboardLayout user={user} handleInviteCodeSubmit={handleInviteCodeSubmit} users={users} setUsers={setUsers} />;
 };
 
 export { Dashboards };
